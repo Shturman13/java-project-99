@@ -1,0 +1,9 @@
+.gradle
+build
+*.md
+.git
+.gitignore
+
+node_modules
+bin
+.*
