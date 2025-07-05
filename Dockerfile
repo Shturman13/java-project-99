@@ -2,7 +2,7 @@
 FROM openjdk:22-jdk-slim AS build
 WORKDIR /home/gradle
 COPY . .
-RUN gradle bootJar --no-daemon
+RUN chmod +x gradlew && ./gradlew bootJar --no-daemon
 
 # Этап запуска
 FROM openjdk:22-jdk-slim
