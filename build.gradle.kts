@@ -2,6 +2,9 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.5.3"
 	id("io.spring.dependency-management") version "1.1.7"
+	checkstyle
+	jacoco
+	id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "hexlet.code"
@@ -26,4 +29,21 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+	reports {
+		xml.required.set(true)
+		html.required.set(true)
+		html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+	}
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "Shturman13_java-project-72")
+		property("sonar.organization", "shturman13")
+		property("sonar.host.url", "https://sonarcloud.io")
+		property("sonar.coverage.jacoco.xmlReportPaths", "app/build/reports/jacoco/test/jacocoTestReport.xml")
+	}
 }

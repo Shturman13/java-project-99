@@ -45,6 +45,12 @@ update-js-deps:
 update-deps:
 	./gradlew refreshVersions
 
+report:
+	./gradlew jacocoTestReport
+
+sonar:
+	./gradlew sonar --info
+
 # generate-migrations:
 # 	gradle diffChangeLog
 
@@ -52,7 +58,7 @@ update-deps:
 # 	./gradlew update
 
 
-.PHONY: build frontend
+.PHONY: build frontend clean lint config test
 
 
 
