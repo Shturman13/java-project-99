@@ -46,5 +46,6 @@ sonar {
 		property("sonar.host.url", "https://sonarcloud.io")
 		property("sonar.coverage.jacoco.xmlReportPaths", "app/build/reports/jacoco/test/jacocoTestReport.xml")
 		property("sonar.token", System.getenv("SONAR_TOKEN") ?: "") // Использует токен из окружения
+//		property("sonar.gradle.skipCompile", "true")
 	}
 }

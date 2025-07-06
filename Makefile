@@ -49,7 +49,7 @@ report:
 	./gradlew jacocoTestReport
 
 sonar: build
-	./gradlew sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$(SONAR_TOKEN)
+	./gradlew sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$(SONAR_TOKEN) -Dsonar.gradle.skipCompile=true
 
 # generate-migrations:
 # 	gradle diffChangeLog
