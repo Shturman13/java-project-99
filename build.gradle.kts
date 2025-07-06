@@ -4,7 +4,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 	checkstyle
 	jacoco
-	id("org.sonarqube") version "6.2.0.5505"
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "hexlet.code"
@@ -41,9 +41,10 @@ tasks.jacocoTestReport {
 
 sonar {
 	properties {
-		property("sonar.projectKey", "Shturman13_java-project-72")
+		property("sonar.projectKey", "Shturman13_java-project-99")
 		property("sonar.organization", "shturman13")
 		property("sonar.host.url", "https://sonarcloud.io")
 		property("sonar.coverage.jacoco.xmlReportPaths", "app/build/reports/jacoco/test/jacocoTestReport.xml")
+		property("sonar.token", System.getenv("SONAR_TOKEN") ?: "") // Использует токен из окружения
 	}
 }

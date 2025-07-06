@@ -48,8 +48,8 @@ update-deps:
 report:
 	./gradlew jacocoTestReport
 
-sonar:
-	./gradlew sonar --info
+sonar: build
+	./gradlew sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$(SONAR_TOKEN)
 
 # generate-migrations:
 # 	gradle diffChangeLog

@@ -78,12 +78,14 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      - name: Build project
+        run: ./gradlew build --info
+
       - name: SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Для интеграции с GitHub
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: make sonar
-
 #  deploy:
 #    needs: sonar-analysis
 #    runs-on: ubuntu-latest
