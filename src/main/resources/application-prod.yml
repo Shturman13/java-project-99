@@ -3,7 +3,7 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:postgresql://dpg-d1m24oumcj7s73flct0g-a.frankfurt-postgres.render.com:5432/users_4agj
+    url: jdbc:postgresql://dpg-d1m24oumcj7s73flct0g-a:5432/users_4agj
     driver-class-name: org.postgresql.Driver
     username: users_4agj_user
     password: 5FaVc2eUHn9Uke0Rv4mdIijzrq7UIsl0
