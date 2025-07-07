@@ -3,7 +3,10 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: ${DATABASE_URL}
+    url: postgresql://users_4agj_user:5FaVc2eUHn9Uke0Rv4mdIijzrq7UIsl0@dpg-d1m24oumcj7s73flct0g-a.frankfurt-postgres.render.com/users_4agj  # Render предоставляет URL в формате postgres://...
     driver-class-name: org.postgresql.Driver
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    username: users_4agj_user
+    password: 5FaVc2eUHn9Uke0Rv4mdIijzrq7UIsl0
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect  # Явное указание диалекта
