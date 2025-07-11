@@ -25,7 +25,17 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation ("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+	implementation("org.springframework.security:spring-security-crypto")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+
+	implementation("jakarta.validation:jakarta.validation-api:3.1.1")
+	implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+//	testImplementation("org.testcontainers:postgresql:1.19.8")
+	testImplementation("org.testcontainers:junit-jupiter:1.19.8")
+	testImplementation("org.mockito:mockito-core")
 	// H2
 	runtimeOnly("com.h2database:h2")
 	// PostgresSQL
@@ -35,6 +45,8 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok:1.18.38")
 	testCompileOnly("org.projectlombok:lombok:1.18.38")
 	testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
+	annotationProcessor("org.projectlombok:lombok")
+
 }
 
 tasks.withType<Test> {

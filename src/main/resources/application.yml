@@ -1,7 +1,9 @@
 spring:
   jpa:
-    show-sql: true
     hibernate:
-      ddl-auto: update
-  main:
-    banner-mode: off
+      ddl-auto: create-drop
+    properties:
+      jakarta.persistence.validation.mode: none
+      hibernate:
+        format_sql: true
+    show-sql: true
