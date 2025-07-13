@@ -38,6 +38,8 @@ jobs:
         run: make build
 
       - name: Run tests
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: make test
 
       - name: Generate coverage report
@@ -85,6 +87,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }} # Добавляем для Sonar, если требуется
         run: make sonar
 #  deploy:
 #    needs: sonar-analysis

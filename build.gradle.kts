@@ -28,6 +28,11 @@ dependencies {
 
 	implementation("org.springframework.security:spring-security-crypto")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	testImplementation ("org.springframework.security:spring-security-test")
+
+	testImplementation ("com.fasterxml.jackson.core:jackson-databind")
+
+	implementation ("io.jsonwebtoken:jjwt:0.9.1")
 
 	implementation("jakarta.validation:jakarta.validation-api:3.1.1")
 	implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
