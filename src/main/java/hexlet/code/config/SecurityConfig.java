@@ -1,6 +1,7 @@
 package hexlet.code.config;
 
 import hexlet.code.service.UserDetailsServiceImpl;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,12 +24,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Отключаем CSRF
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/login", "/").permitAll() // Доступ всем
-                        .requestMatchers("/api/users/**").authenticated() // Только аутентифицированные
+                        .requestMatchers("/h2-console/**", "/api/login", "/", "/index.html", "/assets/**").permitAll()
+                        .requestMatchers("/api/users/**").authenticated()
                         .anyRequest().authenticated()
+                )
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                            System.out.println("Forbidden access to: " + request.getRequestURI());
+                        })
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

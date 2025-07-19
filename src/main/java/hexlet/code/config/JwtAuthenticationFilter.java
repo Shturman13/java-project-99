@@ -32,13 +32,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
         final String authorizationHeader = request.getHeader("Authorization");
+        String requestURI = request.getRequestURI();
+
+        if (requestURI.startsWith("/assets/") || requestURI.equals("/")
+                || requestURI.equals("/index.html") || requestURI.equals("/api/login")) {
+            System.out.println("Skipping JWT check for: " + requestURI);
+            chain.doFilter(request, response);
+            return;
+        }
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String jwt = authorizationHeader.substring(7);
             try {
                 Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt).getBody();
                 String email = claims.getSubject();
-
                 if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                     UserDetails userDetails = this.userDetailsService.loadUserByUsername(email);
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
